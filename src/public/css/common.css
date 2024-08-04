@@ -40,3 +40,22 @@ body,
     padding: 20px;
     text-align: center;
 }
+.page-switch {
+    text-align: center;
+    color: #818181;
+    font-size: 18px;
+}
+
+.page-switch__link {
+    text-decoration: none;
+    color: #1a66c2;
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.error-message {
+    width: 100%;
+    padding: 10px;
+    color: rgb(253, 58, 58);
+}
