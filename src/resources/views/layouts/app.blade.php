@@ -15,12 +15,14 @@
     <header class="header">
         <p class="header__logo">Atte</p>
         <div class="header__link">
+            @if (Auth::check())
             <form class="link__item" action="/" method="">@csrf<input class="link__button" type="submit" value="ホーム">
             </form>
             <form class="link__item" action="/attendance" method="">@csrf<input class="link__button" type="submit"
                     value="日付一覧"></form>
-            <form class="link__item" action="/login" method="">@csrf<input class="link__button" type="submit"
+            <form class="link__item" action="/login" method="POST">@csrf<input class="link__button" type="submit"
                     value="ログアウト"></form>
+            @endif
         </div>
     </header>
     <main class="main">

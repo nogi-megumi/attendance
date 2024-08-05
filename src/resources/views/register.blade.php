@@ -8,18 +8,18 @@
 <div class="content">
     <h2 class="register-form__heading">会員登録</h2>
     <div class="register-form__inner">
-        <form class="register-form__form" action="/register" method="">
+        <form class="register-form__form" action="/register" method="POST">
             @csrf
-            <input class="register-form__input" type="text" name="name" placeholder="名前">
+            <input class="register-form__input" type="text" name="name" value="{{old('name')}}" placeholder="名前">
             {{-- バリデーションエラー --}}
             <p class="error-message"></p>
-            <input class="register-form__input" type="mail" name="email" placeholder="メールアドレス">
+            <input class="register-form__input" type="mail" name="email" value="{{old('email')}}" placeholder="メールアドレス">
             {{-- バリデーションエラー --}}
             <p class="error-message"></p>
             <input class="register-form__input" type="password" name="password" placeholder="パスワード">
             {{-- バリデーションエラー --}}
             <p class="error-message"></p>
-            <input class="register-form__input" type="password" name="password" placeholder="確認用パスワード">
+            <input class="register-form__input" type="password" name="password_confirmation" placeholder="確認用パスワード">
             {{-- バリデーションエラー --}}
             <p class="error-message"></p>
             <input class="register-form__button" type="submit" value="会員登録">

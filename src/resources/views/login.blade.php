@@ -8,9 +8,9 @@
 <div class="content">
     <h2 class="login-form__heading">ログイン</h2>
     <div class="login-form__inner">
-        <form class="login-form__form" action="/login" method="">
+        <form class="login-form__form" action="/login" method="POST">
             @csrf
-            <input class="login-form__input" type="mail" name="email" placeholder="メールアドレス">
+            <input class="login-form__input" type="mail" name="email" value="{{old('email')}}" placeholder="メールアドレス">
             {{-- バリデーションエラー --}}
             <p class="error-message"></p>
             <input class="login-form__input" type="password" name="password" placeholder="パスワード">

@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
+App\Http\Controllers\AuthenticatedSessionController::class;
+App\Http\Controllers\RegisteredUserController::class;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('register');
-});
+Route::get('/', [AuthenticatedSessionController::class,'index']);
+// Route::
