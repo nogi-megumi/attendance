@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
-App\Http\Controllers\AuthenticatedSessionController::class;
-App\Http\Controllers\RegisteredUserController::class;
-
+use App\Http\Controllers\WorkController;
+use App\Http\Controllers\breakController;
+use App\Http\Controllers\AttendanceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +14,7 @@ App\Http\Controllers\RegisteredUserController::class;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [AuthenticatedSessionController::class,'index']);
-// Route::
+Route::middleware('auth')->group(function(){
+Route::get('/', [WorkController::class,'index']);
+Route::get('/attendance',[AttendanceController::class,'index']);
+});

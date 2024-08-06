@@ -43,10 +43,10 @@ class FortifyServiceProvider extends ServiceProvider
         //     return Limit::perMinute(5)->by($request->session()->get('login.id'));
         // });
         Fortify::registerView(function () {
-            return view('auth.register');
+            return view('register');
         });
         Fortify::loginView(function () {
-            return view('auth.login');
+            return view('login');
         });
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;

@@ -11,17 +11,24 @@
         <form class="register-form__form" action="/register" method="POST">
             @csrf
             <input class="register-form__input" type="text" name="name" value="{{old('name')}}" placeholder="名前">
-            {{-- バリデーションエラー --}}
-            <p class="error-message"></p>
+            <p class="error-message">
+                @error('name')
+                {{$message}}
+                @enderror
+            </p>
             <input class="register-form__input" type="mail" name="email" value="{{old('email')}}" placeholder="メールアドレス">
-            {{-- バリデーションエラー --}}
-            <p class="error-message"></p>
+            <p class="error-message">
+                @error('email')
+                {{$message}}
+                @enderror
+            </p>
             <input class="register-form__input" type="password" name="password" placeholder="パスワード">
-            {{-- バリデーションエラー --}}
-            <p class="error-message"></p>
             <input class="register-form__input" type="password" name="password_confirmation" placeholder="確認用パスワード">
-            {{-- バリデーションエラー --}}
-            <p class="error-message"></p>
+            <p class="error-message">
+                @error('password')
+                {{$message}}
+                @enderror
+            </p>
             <input class="register-form__button" type="submit" value="会員登録">
         </form>
         <div class="page-switch">
