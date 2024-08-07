@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\breakController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\RegisterUserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +16,8 @@ use App\Http\Controllers\AttendanceController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/register',[RegisterUserController::class,'store']);
+
 Route::middleware('auth')->group(function(){
 Route::get('/', [WorkController::class,'index']);
 Route::get('/attendance',[AttendanceController::class,'index']);

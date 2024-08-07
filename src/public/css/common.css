@@ -36,10 +36,12 @@ body,
     text-align: center;
     background: #dedcdc;
 }
+
 .footer__copyright {
     padding: 20px;
     text-align: center;
 }
+
 .page-switch {
     text-align: center;
     color: #818181;
@@ -58,4 +60,5 @@ body,
     width: 100%;
     padding: 10px;
     color: rgb(253, 58, 58);
+    text-align: left;
 }

@@ -20,8 +20,10 @@
             </form>
             <form class="link__item" action="/attendance" method="">@csrf<input class="link__button" type="submit"
                     value="日付一覧"></form>
-            <form class="link__item" action="/login" method="POST">@csrf<input class="link__button" type="submit"
-                    value="ログアウト"></form>
+            <form class="link__item" action="/logout" method="POST">
+                @csrf
+                <input class="link__button" type="submit" value="ログアウト">
+            </form>
             @endif
         </div>
     </header>

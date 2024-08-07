@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-// use Laravel\Fortify\
 
 class RegisterRequest extends FormRequest
 {
@@ -25,9 +24,9 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>[],
-            'email' => ['required', 'email', 'unique', 'string', 'max:191'],
-            'password' => ['required', 'min:8', 'max:191'],
+            'name'=>['required','string','max:191'],
+            'email' => ['required', 'email', 'unique:users', 'string', 'max:191'],
+            'password' => ['required', 'min:8', 'max:191','confirmed'],
         ];
     }
 }
