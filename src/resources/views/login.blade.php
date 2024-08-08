@@ -11,14 +11,12 @@
         <form class="login-form__form" action="/login" method="POST">
             @csrf
             <input class="login-form__input" type="mail" name="email" value="{{old('email')}}" placeholder="メールアドレス">
-            {{-- バリデーションエラー --}}
             <p class="error-message">
                 @error('email')
                 {{$message}}
                 @enderror
             </p>
             <input class="login-form__input" type="password" name="password" placeholder="パスワード">
-            {{-- バリデーションエラー --}}
             <p class="error-message">
                 @error('password')
                 {{$message}}

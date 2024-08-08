@@ -5,6 +5,7 @@ use App\Http\Controllers\WorkController;
 use App\Http\Controllers\breakController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,11 @@ use App\Http\Controllers\RegisterUserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('/register',[RegisterUserController::class,'store']);
 
-Route::middleware('auth')->group(function(){
-Route::get('/', [WorkController::class,'index']);
-Route::get('/attendance',[AttendanceController::class,'index']);
+Route::post('/register', [RegisterUserController::class, 'store']);
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', [WorkController::class, 'index']);
+    Route::get('/attendance', [AttendanceController::class, 'index']);
 });

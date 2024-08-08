@@ -23,6 +23,8 @@
                 @enderror
             </p>
             <input class="register-form__input" type="password" name="password" placeholder="パスワード">
+            <p class="error-message">
+            </p>
             <input class="register-form__input" type="password" name="password_confirmation" placeholder="確認用パスワード">
             <p class="error-message">
                 @error('password')
