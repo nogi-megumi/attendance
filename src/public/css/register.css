@@ -21,7 +21,7 @@
 }
 
 .register-form__input {
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #000;
     border-radius: 3px;
     margin-top: 20px;
@@ -31,7 +31,7 @@
     text-align: center;
     color: #eee;
     background: #0d89ec;
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #0d89ec;
     border-radius: 3px;
     margin: 20px 0 30px;

@@ -6,8 +6,7 @@
 
 @section('content')
 <div class="content">
-    {{-- ログインuserを挿入　$user --}}
-    <h2 class="content__text">nameさんお疲れ様です&excl;</h2>
+    <h2 class="content__text">{{Auth::user()->name}}さんお疲れ様です&excl;</h2>
     <div class="content__timestamp">
         {{-- @if($isWorking) --}}
         <div class="timestamp-item timestamp--work-start">

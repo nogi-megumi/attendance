@@ -9,7 +9,6 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Fortify\Contracts\RegisterResponse;
-use Laravel\Fortify\Contracts\RegisterViewResponse;
 use Laravel\Fortify\Fortify;
 use App\Http\Requests\RegisterRequest;
 
@@ -32,18 +31,6 @@ class RegisterUserController extends Controller
     {
         $this->guard = $guard;
     }
-
-    /**
-     * Show the registration view.
-     *
-     * @param  \Illuminate\Http\RegisterRequest  $request
-     * @return \Laravel\Fortify\Contracts\RegisterViewResponse
-     */
-    public function create(RegisterRequest $request): RegisterViewResponse
-    {
-        return app(RegisterViewResponse::class);
-    }
-
     /**
      * Create a new registered user.
      *
