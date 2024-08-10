@@ -13,7 +13,7 @@ class WorkRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class WorkRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id'=>['required'],
+            'work_start'=>['required',],
+            'work_end'=>['required',],
         ];
     }
 }

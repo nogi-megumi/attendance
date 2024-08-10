@@ -29,12 +29,4 @@ class LoginRequest extends FortifyLoginRequest
             'password' => ['required', 'min:8', 'max:191'],
         ];
     }
-    // public function messages()
-    // {
-    //     return [
-    //         'email.required' => 'メールアドレスは、必ず入力してください。',
-    //         'email.email' => 'メールアドレスは、有効なメールアドレス形式で入力してください。',
-    //         'password.required' => 'パスワードは、必ず入力してください。'
-    //     ];
-    // }
 }
