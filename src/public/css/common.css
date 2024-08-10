@@ -1,0 +1,61 @@
+body,
+.header,
+.main,
+.footer {
+    width: 100%;
+}
+
+.header {
+    padding: 15px 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+
+.header__logo {
+    font-size: 32px;
+    font-weight: bold;
+    padding-left: 10px;
+    grid-column: 1/2;
+}
+
+.header__link {
+    display: flex;
+    justify-content: space-around;
+    grid-column: 3/4;
+}
+
+.link__button {
+    border: none;
+    cursor: pointer;
+    background: transparent;
+}
+
+.main {
+    text-align: center;
+    background: #dedcdc;
+}
+.footer__copyright {
+    padding: 20px;
+    text-align: center;
+}
+.page-switch {
+    text-align: center;
+    color: #818181;
+    font-size: 18px;
+}
+
+.page-switch__link {
+    text-decoration: none;
+    color: #1a66c2;
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.error-message {
+    width: 100%;
+    padding: 10px;
+    color: rgb(253, 58, 58);
+}
