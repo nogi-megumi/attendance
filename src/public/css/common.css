@@ -36,10 +36,12 @@ body,
     text-align: center;
     background: #dedcdc;
 }
+
 .footer__copyright {
     padding: 20px;
     text-align: center;
 }
+
 .page-switch {
     text-align: center;
     color: #818181;
@@ -48,7 +50,7 @@ body,
 
 .page-switch__link {
     text-decoration: none;
-    color: #1a66c2;
+    color: #0d89ec;
     display: block;
     font-weight: bold;
     font-size: 18px;
@@ -56,6 +58,7 @@ body,
 
 .error-message {
     width: 100%;
-    padding: 10px;
+    padding: 10px 0;
     color: rgb(253, 58, 58);
+    text-align: left;
 }
