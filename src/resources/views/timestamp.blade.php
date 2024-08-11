@@ -11,12 +11,9 @@
         @if (session('message'))
         {{session('message')}}
         @endif
-        @error('user_id')
-        {{$message}}
-        @enderror
     </p>
     <div class="content__timestamp">
-        @if(isWorking())
+        @if($work->isWorking())
         <div class="timestamp-item timestamp--work-start">
             <form action="/" method="POST">
                 @csrf
@@ -24,7 +21,7 @@
             </form>
         </div>
         <div class="timestamp-item timestamp--work-end">
-            <form action="/work/{work}" method="POST">
+            <form action="/work/{{$work->id}}" method="POST">
                 @csrf
                 @method('put')
                 <input type="hidden" name="user_id" value="{{$user->id}}">
@@ -33,25 +30,44 @@
                 <button type="submit">勤務終了</button>
             </form>
         </div>
-        @if (isBreaking())
-        <div class="timestamp-item timestamp--break-start">
-            <form action="/break" method="POST">
-                @csrf<button type="submit" disabled>休憩開始</button>
-            </form>
-        </div>
-        <div class="timestamp-item timestamp--break-end">
-            <form action="/break/update" method="POST">
-                @csrf
-                @method('put')
-                <button type="submit">休憩終了</button>
-            </form>
-        </div>
-        @endif
+            {{-- @if ($break->isBreaking())
+            <div class="timestamp-item timestamp--break-start">
+                <form action="/break" method="POST">
+                    @csrf<button type="submit" disabled>休憩開始</button>
+                </form>
+            </div>
+            <div class="timestamp-item timestamp--break-end">
+                <form action="/break/{{$break->id}}" method="POST">
+                    @csrf
+                    @method('put')
+                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                    <input type="hidden" name="work_start" value="{{$start_time}}">
+                    <input type="hidden" name="work_end" value="{{$end_time}}">
+                    <button type="submit">休憩終了</button>
+                </form>
+            </div>
+            @else
+            <div class="timestamp-item timestamp--break-start">
+                <form action="/break" method="POST">
+                    @csrf<button type="submit">休憩開始</button>
+                </form>
+            </div>
+            <div class="timestamp-item timestamp--break-end">
+                <form action="/break/{{$break->id}}" method="POST">
+                    @csrf
+                    @method('put')
+                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                    <input type="hidden" name="work_start" value="{{$start_time}}">
+                    <input type="hidden" name="work_end" value="{{$end_time}}">
+                    <button type="submit" disabled>休憩終了</button>
+                </form>
+            </div>
+            @endif --}}
         @else
         <div class="timestamp-item timestamp--work-start">
             <form action="/" method="POST">
                 @csrf
-                <button type="submit" disabled>勤務開始</button>
+                <button type="submit">勤務開始</button>
             </form>
         </div>
         <div class="timestamp-item timestamp--work-end">
@@ -74,6 +90,9 @@
             <form action="/break/update" method="POST">
                 @csrf
                 @method('put')
+                <input type="hidden" name="user_id" value="{{$user->id}}">
+                <input type="hidden" name="work_start" value="{{$start_time}}">
+                <input type="hidden" name="work_end" value="{{$end_time}}">
                 <button type="submit" disabled>休憩終了</button>
             </form>
         </div>
