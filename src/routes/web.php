@@ -23,6 +23,7 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [WorkController::class, 'index']);
-    Route::post('/',[WorkController::class, 'store']);
+    Route::post('/', [WorkController::class, 'store']);
+    Route::put('/work/{work}' , [WorkController::class, 'update']);
     Route::get('/attendance', [AttendanceController::class, 'index']);
 });

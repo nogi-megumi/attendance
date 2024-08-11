@@ -14,4 +14,9 @@ class Braek extends Model
         'break_start',
         'break_end'
     ];
+    public function isBreaking()
+    {
+        return $this->break_start && !$this->break_end;
+    }
+
 }

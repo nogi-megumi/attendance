@@ -25,8 +25,8 @@ class WorkRequest extends FormRequest
     {
         return [
             'user_id'=>['required'],
-            'work_start'=>['required',],
-            'work_end'=>['required',],
+            'work_start'=>['required','date_format:Y-m-d H:i:s'],
+            'work_end'=>['required', 'date_format:Y-m-d H:i:s'],
         ];
     }
 }
