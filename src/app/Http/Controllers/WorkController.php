@@ -15,10 +15,8 @@ class WorkController extends Controller
     {
         $user = Auth::user();
         $work=Work::where('user_id',$user->id)->latest()->first();
-        // $break=BreakTime::where('user_id', $user->id)->latest()->first();
-        $start_time = Carbon::now();
-        $end_time=Carbon::now();
-        return view('timestamp', compact('user','work', 'start_time', 'end_time'));
+        $break=BreakTime::where('work_id', $work->id)->latest()->first();
+        return view('timestamp', compact('user','work', 'break'));
         
     }
 
@@ -34,12 +32,15 @@ class WorkController extends Controller
         return back()->with('message', '勤務開始を記録しました');
     }
 
-    public function update(Work $work, WorkRequest $request)
+    public function update(Work $work)
     {
         // 勤務終了の処理
-        Work::where('user_id', $request->user_id)->latest()->first();
+        // dd($work);
+
+        // $data= Work::where('user_id', auth()->id())->latest()->first();
+        $timestamp = Carbon::now();
         $work->update([
-            'work_end'=>$request->work_end
+            'work_end'=>$timestamp
         ]);
         return back()->with('message', '勤務終了を記録しました');
     }

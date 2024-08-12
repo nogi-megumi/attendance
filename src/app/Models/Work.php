@@ -14,8 +14,8 @@ class Work extends Model
         'work_start',
         'work_end',
     ];
-    public function works(){
-        return $this->hasMany('App\Models\Break');
+    public function breakTimes(){
+        return $this->hasMany(BreakTime::class);
     }
     public function user(){
         return $this->belongsTo(User::class);
