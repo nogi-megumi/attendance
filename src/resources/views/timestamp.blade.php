@@ -32,7 +32,7 @@
                 <button type="submit">勤務終了</button>
             </form>
         </div>
-        {{-- <div class="timestamp-item timestamp--break-start">
+        <div class="timestamp-item timestamp--break-start">
             <form action="/break" method="POST">
                 @csrf<button type="submit">休憩開始</button>
             </form>
@@ -40,12 +40,25 @@
         <div class="timestamp-item timestamp--break-end">
             <form action="/break/{{optional($break)->id}}" method="POST">
                 @csrf
-                @method('put') --}}
+                @method('put')
                 {{-- <input type="hidden" name="user_id" vlue="{{$end_time}}"> --}}
-                {{-- <button type="submit">休憩終了</button>
+                <button type="submit">休憩終了</button>
             </form>
-        </div> --}}
-        @if ($break->isBreaking())
+        </div>
+        {{-- @if ($break->isBreaking())
+        <div class="timestamp-item timestamp--work-start">
+            <form action="/" method="POST">
+                @csrf
+                <button type="submit" disabled>勤務開始</button>
+            </form>
+        </div>
+        <div class="timestamp-item timestamp--work-end">
+            <form action="/work/{{optional($work)->id}}" method="POST">
+                @csrf
+                @method('put')
+                <button type="submit">勤務終了</button>
+            </form>
+        </div>
         <div class="timestamp-item timestamp--break-start">
             <form action="/break" method="POST">
                 @csrf<button type="submit" disabled>休憩開始</button>
@@ -55,11 +68,23 @@
             <form action="/break/{{optional($break)->id}}" method="POST">
                 @csrf
                 @method('put')
-                {{-- <input type="hidden" name="user_id" vlue="{{$end_time}}"> --}}
                 <button type="submit">休憩終了</button>
             </form>
         </div>
         @else
+        <div class="timestamp-item timestamp--work-start">
+            <form action="/" method="POST">
+                @csrf
+                <button type="submit" disabled>勤務開始</button>
+            </form>
+        </div>
+        <div class="timestamp-item timestamp--work-end">
+            <form action="/work/{{optional($work)->id}}" method="POST">
+                @csrf
+                @method('put')
+                <button type="submit">勤務終了</button>
+            </form>
+        </div>
         <div class="timestamp-item timestamp--break-start">
             <form action="/break" method="POST">
                 @csrf<button type="submit">休憩開始</button>
@@ -69,11 +94,10 @@
             <form action="/break/{{optional($break)->id}}" method="POST">
                 @csrf
                 @method('put')
-                {{-- <input type="hidden" name="user_id" vlue="{{$end_time}}"> --}}
-                <button type="submit">休憩終了</button>
+                <button type="submit" disabled>休憩終了</button>
             </form>
         </div>
-        @endif
+        @endif --}}
         {{-- @elseif($work->isWorking())
         <div class="timestamp-item timestamp--work-start">
             <form action="/" method="POST">

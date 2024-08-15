@@ -35,8 +35,6 @@ class WorkController extends Controller
     public function update(Work $work)
     {
         // 勤務終了の処理
-        // dd($work);
-
         // $data= Work::where('user_id', auth()->id())->latest()->first();
         $timestamp = Carbon::now();
         $work->update([

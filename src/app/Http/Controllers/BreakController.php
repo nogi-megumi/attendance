@@ -23,25 +23,15 @@ class breakController extends Controller
         return back()->with('message', '休憩開始を記録しました');
     }
 
-    public function update(BreakTime $breaktime)
+    public function update()
     {
         // 休憩終了の処理
-        // $breaktime->break_end = Carbon::now();
-        // $breaktime->save();
+        $work = Work::where('user_id', auth()->id())->latest()->first();
+        $breaktime=BreakTime::where('work_id',$work->id)->latest()->first();
         $timestamp = Carbon::now();
-        // BreakTime::update([
-        //     'break_end' => $timestamp
-        // ]);
-
-        // 関連するWorkモデルを取得
-        $work = $breaktime->work;
-
-        // Workモデルが存在しない場合の処理
-        if (!$work) {
-            // 例: エラーメッセージを表示
-            return redirect()->back()->with('error', '関連するWorkが見つかりません');
-        }
-
+        $breaktime->update([
+            'break_end' => $timestamp,
+        ]);
         return back()->with('message', '休憩終了を記録しました');
     }
 }
