@@ -22,4 +22,8 @@ class BreakTime extends Model
     {
         return $this->break_start && !$this->break_end;
     }
+    public function isnotBreaking()
+    {
+        return $this->break_end;
+    }
 }

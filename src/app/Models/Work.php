@@ -9,19 +9,25 @@ class Work extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'user_id',
         'work_start',
         'work_end',
     ];
-    public function breakTimes(){
+    public function breakTimes()
+    {
         return $this->hasMany(BreakTime::class);
     }
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
     public function isWorking()
     {
         return $this->work_start && !$this->work_end;
+    }
+    public function isnotWorking()
+    {
+        return $this->work_end;
     }
 }
