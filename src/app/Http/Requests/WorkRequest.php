@@ -23,10 +23,10 @@ class WorkRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'user_id'=>['required'],
-            'work_start'=>['required','date_format:Y-m-d H:i:s'],
-            'work_end'=>['required', 'date_format:Y-m-d H:i:s'],
-        ];
+            return [
+            'user_id'=>'required',
+            'work_start'=>'sometimes|required|date_format:Y-m-d H:i:s',
+            'work_end'=>'sometimes|required| date_format:Y-m-d H:i:s',
+            ];
     }
 }

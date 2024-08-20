@@ -24,8 +24,8 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::middleware('auth')->group(function () {
     Route::get('/', [WorkController::class, 'index']);
     Route::post('/', [WorkController::class, 'store']);
-    Route::put('/work/{work}' , [WorkController::class, 'update']);
-    Route::post('/break',[BreakController::class,'store']);
-    Route::put('/break/update',[BreakController::class,'update']);
+    Route::put('/work/update', [WorkController::class, 'update']);
+    Route::post('/break', [BreakController::class, 'store']);
+    Route::put('/break/update', [BreakController::class, 'update']);
     Route::get('/attendance', [AttendanceController::class, 'index']);
 });

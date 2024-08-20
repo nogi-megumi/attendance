@@ -31,6 +31,16 @@
     cursor: pointer;
 }
 
+.timestamp-item__form {
+    width: 100%;
+    height: 150px;
+}
+
+.timestamp-item__button {
+    width: 100%;
+    height: 100%;
+}
+
 .timestamp--work-start {
     grid-column: 1/2;
     grid-row: 1/2;

@@ -13,7 +13,7 @@ class BreakRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class BreakRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'work_id'=>'required',
+            'break_start' => 'sometimes|required|date_format:Y-m-d H:i:s',
+            'break_end' => 'sometimes|required| date_format:Y-m-d H:i:s',
         ];
     }
 }

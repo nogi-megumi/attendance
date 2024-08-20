@@ -11,27 +11,25 @@ use App\Models\Work;
 
 class breakController extends Controller
 {
-    public function store()
+    public function store(BreakRequest $request)
     {
         // 休憩開始の処理
-        $work = Work::where('user_id', auth()->id())->latest()->first();
-        $timestamp = Carbon::now();
-        BreakTime::create([
-            'work_id' => $work->id,
-            'break_start' => $timestamp
-        ]);
+        BreakTime::create(
+            $request->only([
+                'work_id',
+                'break_start'
+            ])
+        );
         return back()->with('message', '休憩開始を記録しました');
     }
 
-    public function update()
+    public function update(BreakRequest $request)
     {
         // 休憩終了の処理
-        $work = Work::where('user_id', auth()->id())->latest()->first();
-        $breaktime=BreakTime::where('work_id',$work->id)->latest()->first();
-        $timestamp = Carbon::now();
-        $breaktime->update([
-            'break_end' => $timestamp,
-        ]);
+        $breaktime = BreakTime::where('work_id', $request->work_id)->latest()->first();
+        $breaktime->update(
+            $request->only(['break_end'])
+        );
         return back()->with('message', '休憩終了を記録しました');
     }
 }
