@@ -23,7 +23,7 @@
             </form>
         </div>
         <div class="timestamp-item timestamp--work-end">
-            <form action="/work/update}}" method="POST" class="timestamp-item__form">
+            <form action="/work/update" method="POST" class="timestamp-item__form">
                 @csrf
                 @method('put')
                 <input type="hidden" name="user_id" value="{{$user->id}}">
