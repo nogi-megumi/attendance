@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\BreakTime;
 use App\Models\User;
 use App\Models\Work;
+use Illuminate\Support\Facades\Log;
 
 class UpdateEndTime extends Command
 {
@@ -41,11 +42,10 @@ class UpdateEndTime extends Command
      */
     public function handle()
     {
-        $midnight=Carbon::now()->startOfDay();
+        $midnight=Carbon::now()->startOfDay()->addDay();
         // workingユーザーを取得する
-        $workingUsers=User::whereHas('works',function($query)use($midnight){
-            $query->where('work_start','<',$midnight)->whereNull('work_end');
-        })->get();
+        $workingUsers=User::whereHas('works',function($query){
+            $query->whereNull('work_end');})->get();
         //  work_endを更新、新しいwork_startを記録
         foreach ($workingUsers as $user) {
             $latestWork=$user->works()->latest()->first();

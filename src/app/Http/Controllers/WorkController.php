@@ -15,7 +15,11 @@ class WorkController extends Controller
     {
         $user = Auth::user();
         $work = Work::where('user_id', $user->id)->latest()->first();
-        $break = BreakTime::where('work_id', $work->id)->latest()->first();
+        $break=null;
+        if (!empty($work->id)) {
+            $break = BreakTime::where('work_id', $work->id)->latest()->first();
+            }
+
         $time = Carbon::now()->format('Y-m-d H:i:s');
         return view('timestamp', compact('user', 'work', 'break', 'time'));
     }
