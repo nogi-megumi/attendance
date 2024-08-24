@@ -2,17 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\BreakTime;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class BreakTimesTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call([WorksTableSeeder::class,BreakTimesTableSeeder::class]);
+        BreakTime::factory()->count(35)->create();
     }
 }
