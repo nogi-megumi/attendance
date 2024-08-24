@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(5)->create();
-        // $this->call(WorksTableSeeder::class);
-        $this->call(BreakTimesTableSeeder::class);
+        $this->call([WorksTableSeeder::class,BreakTimesTableSeeder::class]);
     }
 }
