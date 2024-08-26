@@ -19,25 +19,26 @@ class AttendanceController extends Controller
         foreach ($attendances as $index => $attendance) {
             dd($index);
             $breaks=$attendance->breakTimes;
+            $total_break=0;
             // 休憩時間の差分
             foreach ($breaks as $break) {
                 $break_start=$break->break_start;
                 $start_dt=new Carbon($break_start);
                 $break_end=$break->break_end;
                 $end_dt=new Carbon($break_end);
-
-                $diff_break=$start_dt->diffInSeconds($end_dt);
+                // 複数休憩がある場合は合計する
+                $total_break+=$start_dt->diffInSeconds($end_dt);
             }
             // 勤務時間の差分
             $work_start= new Carbon($attendance->work_start);
             $work_end = new Carbon($attendance->work_end);
             $diff_seconds=$work_start->diffInSeconds($work_end);
-            $diff_work=$diff_seconds - $diff_break;
+            $diff_work=$diff_seconds - $total_break;
             // 秒単位から、H:i:sにする
             $break_hours
-            = floor($diff_break / 3600);
-            $minutes = floor(($diff_break % 3600) / 60);
-            $seconds = $diff_break % 60;
+            = floor($total_break / 3600);
+            $break_minutes = floor(($total_break % 3600) / 60);
+            $break_seconds = $total_break % 60;
             $break_dt = Carbon::createFromTime($break_hours, $break_minutes, $break_seconds);
 
             $work_hours = floor($diff_work / 3600);

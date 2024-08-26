@@ -27,5 +27,5 @@ Route::middleware('auth')->group(function () {
     Route::put('/work/update', [WorkController::class, 'update']);
     Route::post('/break', [BreakController::class, 'store']);
     Route::put('/break/update', [BreakController::class, 'update']);
-    Route::get('/attendance', [AttendanceController::class, 'index']);
+    Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
 });

@@ -42,7 +42,7 @@ class UpdateEndTime extends Command
      */
     public function handle()
     {
-        $midnight=Carbon::now()->startOfDay()->addDay();
+        $midnight=Carbon::now()->startOfDay();
         // workingユーザーを取得する
         $workingUsers=User::whereHas('works',function($query){
             $query->whereNull('work_end');})->get();

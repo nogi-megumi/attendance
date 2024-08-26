@@ -7,12 +7,12 @@
 @section('content')
 <div class="content">
     <div class="date">
-        <a class="date--link" href="{{route('attendances.index', ['date' => $date->subDay()->format('Y-m-d')]) }}">
+        <a class="date--link" href="{{route('attendance.index', ['date' => $date->subDay()->format('Y-m-d')]) }}">
             &lsaquo;</a>
         <span class="date--present">{{$date}}
         </span>
         <a class="date--link"
-            href="{{ route('attendances.index', ['date' => $date->addDay()->format('Y-m-d')]) }}">&rsaquo;</a>
+            href="{{ route('attendance.index', ['date' => $date->addDay()->format('Y-m-d')]) }}">&rsaquo;</a>
     </div>
     <div class="date__table">
         <table class="date__table--inner">
