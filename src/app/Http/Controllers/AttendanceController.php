@@ -9,34 +9,38 @@ use Carbon\Carbon;
 
 class AttendanceController extends Controller
 {
-    public function index(Request $request){
-        // 日付別のデータ一覧
-        dd($request);
-        $date=Carbon::parse($request->date ?? now()->format('Y-m-d'));
-        $attendances=Work::whereDate('work_start',$date)->pagenate(5);
+    public function index(Request $request)
+    {
+        $date = Carbon::parse($request->date ?? now()->format('Y-m-d'));
+        $previousDay = $date->copy()->subDay();
+        $nextDay = $date->copy()->addDay();
+        $attendances = Work::whereDate('work_start', $date)->paginate(5);
+        foreach ($attendances as $attendance) {
+            $breaks = $attendance->breakTimes;
+            $total_break = 0;
 
-        // 時間差分の処理
-        foreach ($attendances as $index => $attendance) {
-            dd($index);
-            $breaks=$attendance->breakTimes;
-            $total_break=0;
-            // 休憩時間の差分
             foreach ($breaks as $break) {
-                $break_start=$break->break_start;
-                $start_dt=new Carbon($break_start);
-                $break_end=$break->break_end;
-                $end_dt=new Carbon($break_end);
-                // 複数休憩がある場合は合計する
-                $total_break+=$start_dt->diffInSeconds($end_dt);
+                // if (empty($break->break_end)) {
+                //     $break_dt = " ";
+                // }
+                $break_start = $break->break_start;
+                $start_dt = new Carbon($break_start);
+                $break_end = $break->break_end;
+                $end_dt = new Carbon($break_end);
+
+                $total_break += $start_dt->diffInSeconds($end_dt);
             }
-            // 勤務時間の差分
-            $work_start= new Carbon($attendance->work_start);
+            // if (empty($attendance->work_end)) {
+            //     $work_dt = " ";
+            // }
+
+            $work_start = new Carbon($attendance->work_start);
             $work_end = new Carbon($attendance->work_end);
-            $diff_seconds=$work_start->diffInSeconds($work_end);
-            $diff_work=$diff_seconds - $total_break;
-            // 秒単位から、H:i:sにする
+            $diff_seconds = $work_start->diffInSeconds($work_end);
+            $diff_work = $diff_seconds - $total_break;
+
             $break_hours
-            = floor($total_break / 3600);
+                = floor($total_break / 3600);
             $break_minutes = floor(($total_break % 3600) / 60);
             $break_seconds = $total_break % 60;
             $break_dt = Carbon::createFromTime($break_hours, $break_minutes, $break_seconds);
@@ -46,9 +50,9 @@ class AttendanceController extends Controller
             $work_seconds = $diff_work % 60;
             $work_dt = Carbon::createFromTime($work_hours, $work_minutes, $work_seconds);
 
-            $attendances['index']->break_time=$break_dt->format('H:i:s');
-            $attendances['index']->work_time = $work_dt->format('H:i:s');
+            $attendance['work_time'] = $work_dt->format('H:i:s');
+            $attendance['break_time'] = $break_dt->format('H:i:s');
         }
-        return view('date',compact('date','attendances'));
+        return view('date', compact('date', 'previousDay', 'nextDay', 'attendances'));
     }
 }
