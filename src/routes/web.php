@@ -28,4 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/break', [BreakController::class, 'store']);
     Route::put('/break/update', [BreakController::class, 'update']);
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+    Route::get('/user', [AttendanceController::class, 'userIndex']);
+    Route::get('/user/show/{user}', [AttendanceController::class, 'userDetail'])->name('attendance.userDetail');
 });

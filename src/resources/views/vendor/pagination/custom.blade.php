@@ -7,8 +7,9 @@
 
     li {
         border: 1px solid #dedcdc;
-        padding: 5px;
+        padding: 10px;
         line-height: 20px;
+        background: #fff;
     }
 
     a {
@@ -17,7 +18,7 @@
 
     .active {
         border: 1px solid #1a66c2;
-        padding: 5px;
+        padding: 10px;
         background: #1a66c2;
     }
 

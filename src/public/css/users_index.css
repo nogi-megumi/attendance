@@ -1,0 +1,41 @@
+.content {
+    width: 90%;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.users-table {
+    width: 100%;
+}
+
+.users-table__inner {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.users-table__row {
+    border-top: 1px solid #000;
+}
+
+.users-table__td:first-of-type {
+    padding-left: 30px;
+}
+
+.users-table__td {
+    padding-right: 10%;
+    border-top: 1px solid #000;
+    padding: 20px 0;
+    text-align: center;
+    width: 50%;
+}
+
+.users-table__td>a {
+    border-radius: 5px;
+    border: 1px solid #000;
+    padding: 5px 10px;
+    font-size: 12px;
+    background: #eaeaea;
+}
