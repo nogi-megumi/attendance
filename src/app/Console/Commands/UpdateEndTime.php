@@ -42,31 +42,33 @@ class UpdateEndTime extends Command
      */
     public function handle()
     {
-        $midnight=Carbon::now()->startOfDay()->addDay();
-        // workingユーザーを取得する
-        $workingUsers=User::whereHas('works',function($query){
-            $query->whereNull('work_end');})->get();
-        //  work_endを更新、新しいwork_startを記録
-        foreach ($workingUsers as $user) {
-            $latestWork=$user->works()->latest()->first();
-            $latestWork->work_end = $midnight;
-            $latestWork->save();
+        $midnight = Carbon::now()->startOfDay();
+        $working_users = User::whereHas('works', function ($query)
+        {
+            $query->whereNull('work_end');
+        })->get();
+        
+        foreach ($working_users as $user)
+        {
+            $latest_work = $user->works()->latest()->first();
+            $latest_work->work_end = $midnight;
+            $latest_work->save();
 
-            $newWork = new Work;
-            $newWork->user_id = $user->id;
-            $newWork->work_start = $midnight;
-            $newWork->save();
+            $new_work = new Work;
+            $new_work->user_id = $user->id;
+            $new_work->work_start = $midnight;
+            $new_work->save();
 
-            // 最新の休憩レコードを取得、必要に応じて処理
-            $latestBreak = $latestWork->breakTimes()->latest()->first();
-            if($latestBreak && !$latestBreak->break_end){
-                $latestBreak->break_end=$midnight;
-                $latestBreak->save();
+            $latest_break = $latest_work->breakTimes()->latest()->first();
+            if ($latest_break && !$latest_break->break_end)
+            {
+                $latest_break->break_end = $midnight;
+                $latest_break->save();
 
-                $newBreak = new BreakTime;
-                $newBreak->work_id = $newWork->id;
-                $newBreak->break_start = $midnight;
-                $newBreak->save();
+                $new_break = new BreakTime;
+                $new_break->work_id = $new_work->id;
+                $new_break->break_start = $midnight;
+                $new_break->save();
             }
         }
     }
