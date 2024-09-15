@@ -7,13 +7,6 @@
     flex-direction: column;
 }
 
-.date {
-    margin-bottom: 30px;
-    font-weight: bold;
-    font-size: 18px;
-    display: inline-block;
-}
-
 .date--link {
     padding: 0 15px;
     border: 1px solid #1a66c2;
@@ -26,29 +19,4 @@
 .date--present {
     margin: 0 40px;
     font-size: 20px;
-}
-
-.date__table,
-.date__table--inner {
-    width: 100%;
-}
-
-tr {
-    border-top: 1px solid #000;
-}
-
-th:first-of-type {
-    padding-left: 30px;
-}
-
-td:first-of-type {
-    padding-left: 30px;
-}
-
-th,
-td {
-    padding-right: 10%;
-    border-top: 1px solid #000;
-    padding: 20px 0;
-    text-align: left;
 }
