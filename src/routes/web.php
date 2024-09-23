@@ -22,24 +22,24 @@ use Illuminate\Http\Request;
 
 Route::post('/register', [RegisterUserController::class, 'store']);
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-// メール認証のルート
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+// // メール認証のルート
+// Route::get('/email/verify', function () {
+//     return view('auth.verify-email');
+// })->middleware('auth')->name('verification.notice');
+// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+//     $request->fulfill();
 
-    return redirect('/home');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
+//     return redirect('/home');
+// })->middleware(['auth', 'signed'])->name('verification.verify');
+// Route::post('/email/verification-notification', function (Request $request) {
+//     $request->user()->sendEmailVerificationNotification();
 
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-Route::get('/profile', function () {
-})->middleware('verified');
+//     return back()->with('message', 'Verification link sent!');
+// })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+// Route::get('/profile', function () {
+// })->middleware('verified');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('verified')->group(function () {
     Route::get('/', [WorkController::class, 'index']);
     Route::post('/', [WorkController::class, 'store']);
     Route::put('/work/update', [WorkController::class, 'update']);

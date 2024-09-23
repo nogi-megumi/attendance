@@ -31,8 +31,8 @@ class AuthServiceProvider extends ServiceProvider
             function ($notifiable, $url) {
                 return (new MailMessage)
                     ->subject('メールアドレスの確認')
-                    ->line('下のボタンをクリックしてメールアドレスを確認してください。')
-                    ->action('メールアドレスの確認', $url);
+                    ->line('下のボタンをクリックしてメールアドレスの確認を完了してください。')
+                    ->action('メールアドレスを確認', $url);
             }
         );
     }
