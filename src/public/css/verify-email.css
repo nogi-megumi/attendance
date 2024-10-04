@@ -1,0 +1,14 @@
+.content {
+    padding: 30px;
+}
+
+.verify-text {
+    margin-bottom: 30px;
+}
+
+.verify-sent__button {
+    color: #0c88ed;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
