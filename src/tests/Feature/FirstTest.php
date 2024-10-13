@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\BreakTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
@@ -96,6 +97,7 @@ class FirstTest extends TestCase
         $response->assertStatus(302);
         $response->assertSessionHas('message', '休憩終了を記録しました');
     }
+
     public function test_attendance()
     {
         $user = User::factory()->create();
@@ -111,6 +113,7 @@ class FirstTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('user_attendance');
     }
+
     public function test_console_command()
     {
         $user = User::factory()->create();
