@@ -44,11 +44,7 @@
   
     　MAIL_HOST=sandbox.smtp.mailtrap.io
     　MAIL_PORT=2525
-    　MAIL_USERNAME=83618edbf84613
-    　MAIL_PASSWORD=98a9bd7ccd61b1
-    　MAIL_ENCRYPTION=tls
-    　MAIL_FROM_ADDRESS=info@example.com
-       
+    　       
     5. アプリケーションキーの作成
     php artisan key:generate
     
