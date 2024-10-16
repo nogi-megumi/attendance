@@ -1,5 +1,7 @@
 # 勤怠管理システム
 本アプリケーションは勤務開始時間、勤務終了時間、休憩開始時間、休憩終了時間を記録し、それらに基づいて1日の労働時間を計算する勤怠管理システムです。
+![スクリーンショット 2024-10-16 235137](https://github.com/user-attachments/assets/c3cf2dc1-b5c3-4eb0-998d-309e25ff973e)
+
 
 ## 作成した目的
 本システムは従業員の勤務状況を把握し、人事評価に役立てることを目的として作成しました。
@@ -21,7 +23,7 @@
   - AMAZON AWS
   
 ## テーブル設計
-![スクリーンショット 2024-10-14 104836](https://github.com/user-attachments/assets/52291c95-040b-4fab-8c43-fba171d993ed)
+![Screenshot_20241016-124935~2](https://github.com/user-attachments/assets/1225abc1-85d5-47fa-b8bd-1cc57ce03f34)
 
   
 ## ER図
@@ -30,7 +32,7 @@
   
 ## 環境構築
     Dockerビルド
-    1. git clone “githubの作成したリポジトリのSSHを指定する”
+    1. git clone git@github.com:nogi-megumi/attendance.git
     2. DockerDesktopアプリを立ち上げる
     3. docker compose up -d —build
   
