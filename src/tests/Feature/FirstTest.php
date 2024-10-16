@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Work;
+use Carbon\Carbon;
 
 class FirstTest extends TestCase
 {
@@ -101,17 +102,54 @@ class FirstTest extends TestCase
     public function test_attendance()
     {
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->get('/attendance');
-        $response->assertOk();
-        $response->assertViewIs('date');
+        $workStart=new Carbon('2024-10-15 9:00:00');
+        $workEnd=new Carbon('2024-10-15 18:00:00');
+        $work=Work::factory()->create([
+            'user_id' => $user->id,
+            'work_start'=>$workStart,
+            'work_end'=>$workEnd
+        ]);
+        BreakTime::factory()->create([
+            'work_id' => $work->id,
+            'break_start' =>new Carbon('2024-10-15 12:00:00'), 
+            'break_end' =>new Carbon('2024-10-15 12:30:00'), 
+        ]);
+        BreakTime::factory()->create([
+            'work_id' => $work->id,
+            'break_start' => new Carbon('2024-10-15 15:00:00'),
+            'break_end' => new Carbon('2024-10-15 15:15:00'),
+        ]);
 
-        $response = $this->actingAs($user)->get('/user');
+        $response = $this->actingAs($user)->get('/attendance?date=2024-10-15');
         $response->assertOk();
-        $response->assertViewIs('users_index');
+        $response->assertViewHas('date',function($date){
+            return $date->format('Y-m-d')==='2024-10-15';
+        });
 
-        $response = $this->actingAs($user)->get('/user/show/' . $user->id);
-        $response->assertOk();
-        $response->assertViewIs('user_attendance');
+        $response->assertViewHas('attendances',function($attendances) use($workStart,$workEnd){
+            $attendance=$attendances->first();
+   
+        $totalBreakTime=(30*60)+(15*60);
+        $totalWorkTime=$workStart->diffInSeconds($workEnd)-$totalBreakTime;
+        $breakTimeFormatted=gmdate('H:i:s',$totalBreakTime);
+        $workTimeFormatted = gmdate('H:i:s', $totalWorkTime);
+
+        return $attendance['break_time']===$breakTimeFormatted && $attendance['work_time']===$workTimeFormatted;
+        });
+
+        $response->assertViewHas(
+            'previousDay',
+            function ($previousDay) {
+                return $previousDay->format('Y-m-d')==='2024-10-14';
+            }
+        );
+
+        $response->assertViewHas(
+            'nextDay',
+            function ($nextDay) {
+                return $nextDay->format('Y-m-d') === '2024-10-16';
+            }
+        );
     }
 
     public function test_console_command()
