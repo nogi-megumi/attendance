@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Requests\WorkRequest;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +25,6 @@ class WorkController extends Controller
 
     public function store(WorkRequest $request)
     {
-        // 勤務開始の処理
         Work::create(
             $request->only(['user_id', 'work_start'])
         );
@@ -35,7 +33,6 @@ class WorkController extends Controller
 
     public function update(WorkRequest $request)
     {
-        // 勤務終了の処理
         $work = Work::where('user_id', $request->user_id)->latest()->first();
         $work->update(
             $request->only(['work_end'])

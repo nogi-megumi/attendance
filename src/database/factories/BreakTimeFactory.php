@@ -6,11 +6,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BreakTimeFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
         $dammyDate = $this->faker->dateTimeBetween('2024-08-24 11:00:00', '2024-08-24 13:00:00');
