@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BreakRequest;
 use App\Models\BreakTime;
 
-class breakController extends Controller
+class BreakController extends Controller
 {
     public function store(BreakRequest $request)
     {

@@ -10,7 +10,7 @@ class BreakTimeFactory extends Factory
     {
         $dammyDate = $this->faker->dateTimeBetween('2024-08-24 11:00:00', '2024-08-24 13:00:00');
         return [
-            'work_id' => $this->faker->numberBetween(18,52),
+            'work_id' => $this->faker->numberBetween(1,35),
             'break_start' => $dammyDate->format('Y-m-d H:i:s'),
             'break_end' => $dammyDate->modify('+30 minutes')->format('Y-m-d H:i:s'),
         ];
