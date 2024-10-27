@@ -7,6 +7,7 @@
 本システムは従業員の勤務状況を把握し、人事評価に役立てることを目的として作成しました。
 
 ## アプリケーションURL（デプロイのURL）
+http://43.207.138.14
 
 ## 機能一覧
   - 会員登録機能、会員登録時のメール認証機能
@@ -21,6 +22,7 @@
   - mysql 8.0.26
   - Laravel8.83.27
   - AMAZON AWS
+  - mailtrap
   
 ## テーブル設計
 ![Screenshot_20241016-124935~2](https://github.com/user-attachments/assets/1225abc1-85d5-47fa-b8bd-1cc57ce03f34)
@@ -48,9 +50,11 @@
     　DB_DATABASE=laravel_db
     　DB_USERNAME=laravel_user
     　DB_PASSWORD=laravel_pass
-  
+
+      MAIL_MAILER=smtp  
     　MAIL_HOST=sandbox.smtp.mailtrap.io
     　MAIL_PORT=2525
+      MAIL_ENCRYPTION=tls
     　       
     5. アプリケーションキーの作成
     php artisan key:generate
