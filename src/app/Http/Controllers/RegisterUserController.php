@@ -53,4 +53,8 @@ class RegisterUserController extends Controller
 
         return app(RegisterResponse::class);
     }
+    public function redirectPath()
+    {
+        return '/';
+    }
 }
